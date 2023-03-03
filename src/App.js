@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import RegistrationForm from "./form/RegistrationForm";
+import CityForm from "./form/fieldArray/cityForm";
+import "./form/home.css";
 
-function App() {
+const HomePage = () => {
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [showCityForm, setShowCityForm] = useState(false);
+
+  const handleRegisterClick = () => {
+    setShowRegistrationForm(true);
+  };
+
+  const handleCityClick = () => {
+    setShowCityForm(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="homepage">
+      <h2 className="subtitle">Please register to continue</h2>
+      {showRegistrationForm ? (
+        <RegistrationForm />
+      ) : (
+        <button className="btn btn-primary" onClick={handleRegisterClick}>
+          Register
+        </button>
+      )}
+
+      <h3> Field Array Demo </h3>
+
+      {showCityForm ? (
+        <CityForm />
+      ) : (
+        <button className="btn btn-primary" onClick={handleCityClick}>
+          City form
+        </button>
+      )}
     </div>
   );
-}
+};
 
-export default App;
+export default HomePage;
